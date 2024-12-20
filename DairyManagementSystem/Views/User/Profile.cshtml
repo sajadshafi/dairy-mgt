@@ -1,0 +1,148 @@
+﻿@model DairyManagementSystem.Models.ViewModels.UserProfileVM
+
+@{
+   ViewData["Title"] = "Dashboard";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+   <div class="container-fluid admin-breadcrumb px-3 py-2">
+      <div class="row align-items-center">
+         <div class="col-sm-6">
+            <h3 class="m-0 breadcrumb-heading">User</h3>
+         </div><!-- /.col -->
+         <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+               <li class="breadcrumb-item active">Profile</li>
+            </ol>
+         </div><!-- /.col -->
+      </div><!-- /.row -->
+   </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<!-- Main content -->
+<section class="content">
+   <div class="container-fluid">
+
+      <div>
+         <button type="button" data-toggle="modal" data-target="#passwordChangeDialog" class="btn btn-info">Change Password</button>
+      </div>
+
+      <div class="card mt-3">
+         <div class="card-header border-0">
+            <div class="d-flex justify-content-between">
+               <h3 class="card-title">Update Profile</h3>
+            </div>
+         </div>
+         <div class="card-body">
+            <form asp-action="UpdateProfile" enctype="multipart/form-data" method="post">
+               <div class="row">
+                  <div class="col-lg-4">
+                     <div class="d-flex align-items-center flex-column">
+                        @if (Model.ImageArray == null)
+                        {
+                           <img id="imagePreview" class="rounded-circle" style="width:70%;" src="/images/profile.png" />
+                        } else {
+                           <img id="imagePreview" class="rounded-circle" style="width:70%;" 
+                           src="data:image/jpeg;base64,@Convert.ToBase64String(Model.ImageArray)" />
+                        }
+                        <div class="form-group mt-3">
+                           <div class="custom-file">
+                              <input type="file" name="ProfileImage" class="custom-file-input" id="userProfileImage" accept="image/*">
+                              <label class="custom-file-label" for="userProfileImage">Choose file</label>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-lg-8">
+
+                     <div class="form-group">
+                        <input asp-for="Name" placeholder="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                     </div>
+                     <div class="form-group">
+                        <input disabled asp-for="Email" placeholder="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                     </div>
+                     <div class="form-group">
+                        <input disabled asp-for="UserName" placeholder="UserName" class="form-control" />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                     </div>
+                     <div class="form-group">
+                        <input asp-for="Address" placeholder="Address" class="form-control" />
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                     </div>
+                     <div class="form-group">
+                        <input asp-for="Phone" placeholder="Phone" class="form-control" />
+                        <span asp-validation-for="Phone" class="text-danger"></span>
+                     </div>
+                     <button type="submit" class="btn btn-primary my-3 px-5">Update</button>
+                  </div>
+               </div>
+            </form>
+         </div>
+      </div>
+
+   </div>
+</section>
+<!-- /.content -->
+<!-- The Modal for add Unit-->
+<div class="modal fade" id="passwordChangeDialog">
+   <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+         <form asp-action="ChangePassword" method="POST">
+            <!-- Modal Header -->
+            <div class="modal-header">
+               <h4 class="modal-title">Change Password</h4>
+               <button type="button" class="btn model-close-icon p-0 px-1" data-dismiss="modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+               <div class="form-group">
+                  <input type="password" name="OldPassword" class="form-control" placeholder="Old password" required>
+               </div>
+               <div class="form-group">
+                  <input type="password" name="NewPassword" class="form-control" placeholder="New password" required>
+               </div>
+               <div class="form-group">
+                  <input type="password" name="ConfirmNewPassword" class="form-control" placeholder="Confirm password" required>
+               </div>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+               <button type="submit" class="btn btn-success">Update</button>
+            </div>
+         </form>
+
+      </div>
+   </div>
+</div>
+
+
+@section Scripts {
+   <script>
+      $(function () {
+         bsCustomFileInput.init();
+      });
+   </script>
+   <script>
+      document.getElementById('userProfileImage').addEventListener('change', function (e) {
+         var imgPreview = document.getElementById('imagePreview');
+         var file = e.target.files[0];
+
+         if (file) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+               imgPreview.src = e.target.result;
+               imgPreview.style.display = 'block';
+            };
+
+            reader.readAsDataURL(file);
+         } else {
+            imgPreview.src = '';
+            imgPreview.style.display = 'none';
+         }
+      });
+   </script>
+}

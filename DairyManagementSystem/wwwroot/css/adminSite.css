@@ -1,0 +1,13 @@
+﻿body.dark-mode .theme-icon {
+   border: 1px solid #cfcfcf;
+}
+
+body:not(.dark-mode) .theme-icon {
+   border: 1px solid #232323;
+}
+
+.theme-icon {
+   position: fixed;
+   right: 2rem;
+   top: 2rem;
+}

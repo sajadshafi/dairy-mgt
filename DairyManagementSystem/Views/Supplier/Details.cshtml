@@ -1,0 +1,180 @@
+﻿@model DairyManagementSystem.Models.ViewModels.SupplierModel
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+   <div class="container-fluid admin-breadcrumb px-3 py-2">
+      <div class="row align-items-center">
+         <div class="col-sm-6">
+            <h3 class="m-0 breadcrumb-heading">Suppliers</h3>
+         </div><!-- /.col -->
+         <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+               <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+               <li class="breadcrumb-item"><a href="#">Suppliers</a></li>
+               <li class="breadcrumb-item active">@Model.Name</li>
+            </ol>
+         </div><!-- /.col -->
+      </div><!-- /.row -->
+   </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<!-- Main content -->
+<section class="content">
+   <div class="container-fluid">
+      <div>
+         <p>
+            <a asp-action="Index" class="btn btn-warning px-3"><i class="fas fa-chevron-left"></i> Back</a>
+         </p>
+
+         <h4>Suppliers Details</h4>
+
+         <div>
+            <h6>Name: @Model.Name</h6>
+            <h6>Name: @Model.Email</h6>
+            <h6>Phone: @Model.Phone</h6>
+            <h6>Address: @Model.Address</h6>
+         </div>
+      </div>
+
+      <div>
+         <p class="mb-2">
+            <button type="button" class="btn btn-primary mt-4 px-5" data-toggle="modal" data-target="#AddCustomerToSupplierDialog">
+               Add <i class="ms-2 fas fa-plus"></i>
+            </button>
+         </p>
+      </div>
+
+
+      <div class="row">
+         <div class="col-12">
+            <div class="card">
+               <div class="card-header">
+                  <h3 class="card-title">Customers</h3>
+               </div>
+               <!-- /.card-header -->
+               <div class="card-body table-responsive p-0">
+                  <table class="table table-hover text-nowrap">
+                     <thead>
+                        <tr>
+                           <th>S. No</th>
+                           <th>Name</th>
+                           <th>Email</th>
+                           <th>Phone</th>
+                           <th>Address</th>
+                           <th>Action</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        @{
+                           int count = 1;
+                        }
+                        @if(Model == null || Model.SupplierCustomers.Count == 0) {
+                           <tr>
+                              <td colspan="5" class="badge bg-danger m-1">No customers available</td>
+                           </tr>
+                        } else {
+                           foreach(var customer in Model.SupplierCustomers) {
+                              <tr>
+                                 <td>@count</td>
+                                 <td>@customer.Name</td>
+                                 <td>@customer.Email</td>
+                                 <td>@customer.Phone</td>
+                                 <td>@customer.Address</td>
+                                 <td>
+                                    <button title="Delete" onclick="DeleteCustomerFromSupplier(this)" data-id="@customer.Id" class="btn btn-danger ms-1 action-buttons">
+                                       <i class="fas fa-trash"></i>
+                                    </button>
+                                 </td>
+                              </tr>
+                              count += 1;
+                           }
+                        }
+                     </tbody>
+                  </table>
+               </div>
+               <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+         </div>
+      </div>
+
+
+   </div>
+</section>
+<!-- /.content -->
+<!-- The Modal -->
+<div class="modal fade" id="AddCustomerToSupplierDialog">
+   <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+         <form asp-action="AddCustomerToSupplier">
+            <!-- Modal Header -->
+            <div class="modal-header">
+               <h4 class="modal-title">Add Customer</h4>
+               <button type="button" class="btn model-close-icon p-0 px-1" data-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+               <input type="hidden" name="SupplierId" value="@Model.Id" />
+               <div class="form-group">
+                  <select name="CustomerId" class="form-control">
+                     <option value="">-- SELECT CUSTOMER --</option>
+                     @if(ViewBag.CustomerDD != null && ViewBag.CustomerDD.Count > 0) {
+                        foreach(var customer in ViewBag.CustomerDD) {
+                           <option value="@customer.Key">@customer.Value</option>
+                        }
+                     }
+                  </select>
+               </div>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+               <button type="submit" class="btn btn-primary my-3">Save</button>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+
+
+<!-- The Modal -->
+<div class="modal fade" id="confirmDeleteSupplierCustomerDialog">
+   <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+
+         <!-- Modal Header -->
+         <div class="modal-header">
+            <h4 class="modal-title">Confirm!</h4>
+            <button type="button" class="btn model-close-icon p-0 px-1" data-dismiss="modal"></button>
+         </div>
+         <div class="modal-body">
+            Are you Sure?
+         </div>
+         <!-- Modal footer -->
+         <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <a id="confirmDeleteSuppliersCustomerLink" class="btn btn-danger">Confirm</a>
+         </div>
+
+      </div>
+   </div>
+</div>
+
+
+@section Scripts {
+   <script>
+      function DeleteCustomerFromSupplier(target) {
+         let id = target.getAttribute("data-id");
+
+
+         let modal = new bootstrap.Modal(document.getElementById('confirmDeleteSupplierCustomerDialog'))
+         modal.show();
+
+         let href = "/Supplier/DeleteCustomerFromSupplier?supplierId=@Model.Id&customerId=" + id;
+
+         const confirmDeleteSuppliersCustomerLink = document.getElementById("confirmDeleteSuppliersCustomerLink");
+         confirmDeleteSuppliersCustomerLink.setAttribute('href', href);
+      }
+   </script>
+}
+
+

@@ -1,0 +1,244 @@
+﻿@model DairyManagementSystem.Models.ViewModels.SettingVM
+@{
+   ViewData["Title"] = "Settings";
+}
+
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+   <div class="container-fluid admin-breadcrumb px-3 py-2">
+      <div class="row align-items-center">
+         <div class="col-sm-6">
+            <h3 class="m-0 breadcrumb-heading">Dashboard</h3>
+         </div><!-- /.col -->
+         <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+               <li class="breadcrumb-item active">Dashboard</li>
+            </ol>
+         </div><!-- /.col -->
+      </div><!-- /.row -->
+   </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<!-- Main content -->
+<section class="content">
+   <div class="container-fluid">
+      <div class="row">
+         <div class="col-lg-6 ps-0">
+            <div class="card">
+               <div class="card-header border-transparent">
+                  <h3 class="card-title">Units of Measurement</h3>
+
+                  <div class="card-tools">
+                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUnit">
+                        Add <i class="fas fa-plus ms-2"></i>
+                     </button>
+                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                     </button>
+                  </div>
+               </div>
+               <!-- /.card-header -->
+               <div class="card-body p-0">
+                  <div class="table-responsive">
+                     <table class="table m-0">
+                        <thead>
+                           <tr>
+                              <th>S. No</th>
+                              <th>Name</th>
+                              <th>Symbol</th>
+                              <th>Action</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           @{
+                              int count = 1;
+                           }
+                           @if(Model.MeasurementUnits == null || Model.MeasurementUnits.Count <= 0) {
+                              <tr>
+                                 <td colspan="5" class="badge bg-danger m-1">No units available</td>
+                              </tr>
+                           } else {
+                              foreach(var unit in Model.MeasurementUnits) {
+                                 <tr>
+                                    <td>@count</td>
+                                    <td>@unit.Name</td>
+                                    <td><span style="font-size:14px;" class="badge badge-success">@unit.Symbol</span></td>
+                                    <td>
+                                       <a title="Edit" class="btn btn-warning action-buttons text-light" href="@Url.Action("Save", "Supplier", new { id = unit.Id })">
+                                          <i class="fas fa-edit"></i>
+                                       </a>
+                                       <button title="Delete" onclick="DeleteUnit(this)" data-id="@unit.Id" class="btn btn-danger ms-1 action-buttons">
+                                          <i class="fas fa-trash"></i>
+                                       </button>
+                                    </td>
+                                 </tr>
+                                 count += 1;
+                              }
+                           }
+                        </tbody>
+                     </table>
+                  </div>
+                  <!-- /.table-responsive -->
+               </div>
+            </div>
+         </div>
+         <!-- /.card -->
+
+         <div class="col-lg-6 ps-0">
+            <div class="card">
+               <div class="card-header border-transparent">
+                  <h3 class="card-title">System Roles</h3>
+
+                  <div class="card-tools">
+                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addRole">
+                        Add <i class="fas fa-plus ms-2"></i>
+                     </button>
+                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                     </button>
+                  </div>
+               </div>
+               <!-- /.card-header -->
+               <div class="card-body p-0">
+                  <div class="table-responsive">
+                     <table class="table m-0">
+                        <thead>
+                           <tr>
+                              <th>S. No</th>
+                              <th>Name</th>
+                              @* <th>Action</th> *@
+                           </tr>
+                        </thead>
+                        <tbody>
+                           @{
+                              int roleCount = 1;
+                           }
+                           @if(Model.Roles == null || Model.Roles.Count <= 0) {
+                              <tr>
+                                 <td colspan="5" class="badge bg-danger m-1">No roles available</td>
+                              </tr>
+                           } else {
+                              foreach(var role in Model.Roles) {
+                                 <tr>
+                                    <td>@roleCount</td>
+                                    <td>@role.RoleName</td>
+@*                                     <td>
+                                       <button title="Delete" onclick="DeleteUnit(this)" data-id="@role.Id" class="btn btn-danger ms-1 action-buttons">
+                                          <i class="fas fa-trash"></i>
+                                       </button>
+                                    </td> *@
+                                 </tr>
+                                 roleCount += 1;
+                              }
+                           }
+                        </tbody>
+                     </table>
+                  </div>
+                  <!-- /.table-responsive -->
+               </div>
+            </div>
+         </div>
+         <!-- /.card -->
+      </div>
+   </div>
+</section>
+<!-- /.content -->
+<!-- The Modal for deleting Unit-->
+<div class="modal fade" id="confirmDeleteUnitDialog">
+   <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+
+         <!-- Modal Header -->
+         <div class="modal-header">
+            <h4 class="modal-title">Confirm!</h4>
+            <button type="button" class="btn model-close-icon p-0 px-1" data-dismiss="modal"><i class="fas fa-times"></i></button>
+         </div>
+         <div class="modal-body">
+            Are you Sure?
+         </div>
+         <!-- Modal footer -->
+         <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <a id="confirmDeleteUnitLink" class="btn btn-danger">Confirm</a>
+         </div>
+
+      </div>
+   </div>
+</div>
+
+<!-- The Modal for add Unit-->
+<div class="modal fade" id="addUnit">
+   <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+         <form asp-action="SaveUnit" method="POST">
+            <!-- Modal Header -->
+            <div class="modal-header">
+               <h4 class="modal-title">Add Measurement Unit</h4>
+               <button type="button" class="btn model-close-icon p-0 px-1" data-dismiss="modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+               <div class="form-group">
+                  <input type="text" name="Name" class="form-control" placeholder="Unit Name (e.g: Kilogram)">
+               </div>
+               <div class="form-group">
+                  <input type="text" name="Description" class="form-control" placeholder="Description">
+               </div>
+               <div class="form-group">
+                  <input type="text" name="Symbol" class="form-control" placeholder="Symbol (e.g: KG)">
+               </div>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+               <button type="submit" class="btn btn-success">Save</button>
+            </div>
+         </form>
+
+      </div>
+   </div>
+</div>
+
+<!-- The Modal for add role-->
+<div class="modal fade" id="addRole">
+   <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+         <form asp-action="SaveRole" method="POST">
+            <!-- Modal Header -->
+            <div class="modal-header">
+               <h4 class="modal-title">Add New Role</h4>
+               <button type="button" class="btn model-close-icon p-0 px-1" data-dismiss="modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+               <div class="form-group">
+                  <input type="text" name="roleName" class="form-control" placeholder="Role Name">
+               </div>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+               <button type="submit" class="btn btn-success">Save</button>
+            </div>
+         </form>
+
+      </div>
+   </div>
+</div>
+
+
+@section Scripts {
+   <script>
+      function DeleteUnit(target) {
+         let id = target.getAttribute("data-id");
+
+
+         let modal = new bootstrap.Modal(document.getElementById('confirmDeleteUnitDialog'))
+         modal.show();
+
+         let href = "deleteunit/" + id;
+
+         const confirmDeleteLink = document.getElementById("confirmDeleteUnitLink");
+         confirmDeleteLink.setAttribute('href', href);
+      }
+   </script>
+}

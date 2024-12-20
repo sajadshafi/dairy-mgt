@@ -1,0 +1,90 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\WORK\\learning\\dotnet\\CollegeProject\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{90F3B4F2-5D60-4D81-A3AE-1B68B4F32DE3}|DairyManagementSystem\\DairyManagementSystem.csproj|d:\\work\\learning\\dotnet\\collegeproject\\dairymanagementsystem\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{90F3B4F2-5D60-4D81-A3AE-1B68B4F32DE3}|DairyManagementSystem\\DairyManagementSystem.csproj|solutionrelative:dairymanagementsystem\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90F3B4F2-5D60-4D81-A3AE-1B68B4F32DE3}|DairyManagementSystem\\DairyManagementSystem.csproj|d:\\work\\learning\\dotnet\\collegeproject\\dairymanagementsystem\\dairymanagementsystem.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{90F3B4F2-5D60-4D81-A3AE-1B68B4F32DE3}|DairyManagementSystem\\DairyManagementSystem.csproj|solutionrelative:dairymanagementsystem\\dairymanagementsystem.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90F3B4F2-5D60-4D81-A3AE-1B68B4F32DE3}|DairyManagementSystem\\DairyManagementSystem.csproj|d:\\work\\learning\\dotnet\\collegeproject\\dairymanagementsystem\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{90F3B4F2-5D60-4D81-A3AE-1B68B4F32DE3}|DairyManagementSystem\\DairyManagementSystem.csproj|solutionrelative:dairymanagementsystem\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90F3B4F2-5D60-4D81-A3AE-1B68B4F32DE3}|DairyManagementSystem\\DairyManagementSystem.csproj|d:\\work\\learning\\dotnet\\collegeproject\\dairymanagementsystem\\models\\viewmodels\\authdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{90F3B4F2-5D60-4D81-A3AE-1B68B4F32DE3}|DairyManagementSystem\\DairyManagementSystem.csproj|solutionrelative:dairymanagementsystem\\models\\viewmodels\\authdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:127654961:0:{83107a3e-496a-485e-b455-16ddb978e55e}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "D:\\WORK\\learning\\dotnet\\CollegeProject\\DairyManagementSystem\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "DairyManagementSystem\\Properties\\launchSettings.json",
+              "ToolTip": "D:\\WORK\\learning\\dotnet\\CollegeProject\\DairyManagementSystem\\Properties\\launchSettings.json",
+              "RelativeToolTip": "DairyManagementSystem\\Properties\\launchSettings.json",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAABcAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-08-31T17:01:43.183Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DairyManagementSystem.csproj",
+              "DocumentMoniker": "D:\\WORK\\learning\\dotnet\\CollegeProject\\DairyManagementSystem\\DairyManagementSystem.csproj",
+              "RelativeDocumentMoniker": "DairyManagementSystem\\DairyManagementSystem.csproj",
+              "ToolTip": "D:\\WORK\\learning\\dotnet\\CollegeProject\\DairyManagementSystem\\DairyManagementSystem.csproj",
+              "RelativeToolTip": "DairyManagementSystem\\DairyManagementSystem.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-08-31T16:40:23.052Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AuthDto.cs",
+              "DocumentMoniker": "D:\\WORK\\learning\\dotnet\\CollegeProject\\DairyManagementSystem\\Models\\ViewModels\\AuthDto.cs",
+              "RelativeDocumentMoniker": "DairyManagementSystem\\Models\\ViewModels\\AuthDto.cs",
+              "ToolTip": "D:\\WORK\\learning\\dotnet\\CollegeProject\\DairyManagementSystem\\Models\\ViewModels\\AuthDto.cs",
+              "RelativeToolTip": "DairyManagementSystem\\Models\\ViewModels\\AuthDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-31T16:35:39.726Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\WORK\\learning\\dotnet\\CollegeProject\\DairyManagementSystem\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "DairyManagementSystem\\Controllers\\AuthController.cs",
+              "ToolTip": "D:\\WORK\\learning\\dotnet\\CollegeProject\\DairyManagementSystem\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "DairyManagementSystem\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAGYAAAAAAAAAAAD4v3IAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-31T16:30:58.64Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

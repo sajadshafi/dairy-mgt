@@ -1,0 +1,47 @@
+﻿@model DairyManagementSystem.Models.ViewModels.ProductModel
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+   <div class="container-fluid admin-breadcrumb px-3 py-2">
+      <div class="row align-items-center">
+         <div class="col-sm-6">
+            <h3 class="m-0 breadcrumb-heading">Product</h3>
+         </div><!-- /.col -->
+         <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+               <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+               <li class="breadcrumb-item"><a href="#">Products</a></li>
+               <li class="breadcrumb-item active">@Model.ProductName</li>
+            </ol>
+         </div><!-- /.col -->
+      </div><!-- /.row -->
+   </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<!-- Main content -->
+<section class="content">
+   <div class="container-fluid">
+      <p>
+         <a asp-action="Index" class="btn btn-warning px-3"><i class="fas fa-chevron-left"></i> Back</a>
+      </p>
+
+      <div class="container">
+         <h1>Product Details</h1>
+         <div class="row">
+            <div class="col-md-6">
+               <dl class="dl-horizontal">
+                  <dt>Product ID</dt>
+                  <dd>@Model.Id</dd>
+                  <dt>Product Name</dt>
+                  <dd>@Model.ProductName</dd>
+                  <dt>Price</dt>
+                  <dd>@Model.Price</dd>
+                  <dt>Quantity</dt>
+                  <dd>@Model.Quantity</dd>
+               </dl>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<!-- /.content -->

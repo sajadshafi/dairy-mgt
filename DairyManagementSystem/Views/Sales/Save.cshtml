@@ -1,0 +1,76 @@
+﻿@model DairyManagementSystem.Models.ViewModels.SalesVM
+
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+   <div class="container-fluid admin-breadcrumb px-3 py-2">
+      <div class="row align-items-center">
+         <div class="col-sm-6">
+            <h3 class="m-0 breadcrumb-heading">Sales</h3>
+         </div><!-- /.col -->
+         <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+               <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+               <li class="breadcrumb-item"><a href="#">Add Sale</a></li>
+            </ol>
+         </div><!-- /.col -->
+      </div><!-- /.row -->
+   </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<!-- Main content -->
+<section class="content">
+   <div class="container-fluid">
+      <div>
+         <a asp-action="Index" class="btn btn-warning mb-3"><i class="fas fa-chevron-left mr-2"></i>Back</a>
+      </div>
+      <form asp-action="Save">
+         <div class="form-group">
+            <select asp-for="BuyerId" class="form-control">
+               <option value="">-- SELECT CUSTOMER --</option>
+               @if(ViewBag.Buyers != null && ViewBag.Buyers.Count > 0) {
+                  foreach(var buyer in ViewBag.Buyers) {
+                     @if(Model?.BuyerId == buyer.Key) {
+                        <option selected value="@buyer.Key">@buyer.Value</option>
+                     } else {
+                        <option value="@buyer.Key">@buyer.Value</option>
+                     }
+                  }
+               }
+            </select>
+            <span asp-validation-for="ProductId" class="text-danger"></span>
+         </div>
+         <div class="form-group">
+            <select asp-for="ProductId" class="form-control">
+               <option value="">-- SELECT PRODUCT --</option>
+               @if(ViewBag.Products != null && ViewBag.Products.Count > 0) {
+                  foreach(var product in ViewBag.Products) {
+                     @if(Model?.ProductId == product.Key) {
+                        <option selected value="@product.Key">@product.Value</option>
+                     } else {
+                        <option value="@product.Key">@product.Value</option>
+                     }
+
+                  }
+               }
+            </select>
+            <span asp-validation-for="ProductId" class="text-danger"></span>
+         </div>
+         <div class="form-group">
+            <input asp-for="Quantity" placeholder="Quantity" class="form-control" />
+            <span asp-validation-for="Quantity" class="text-danger"></span>
+         </div>
+         <div class="form-group">
+            <input type="date" asp-for="Date" placeholder="Date" class="form-control" />
+            <span asp-validation-for="Date" class="text-danger"></span>
+         </div>
+         <button type="submit" class="btn btn-primary my-3 px-5">Save</button>
+      </form>
+   </div>
+</section>
+<!-- /.content -->
+@section Scripts {
+   @{
+      await Html.RenderPartialAsync("~/Views/Shared/_ValidationScriptsPartial.cshtml");
+   }
+}

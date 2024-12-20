@@ -1,0 +1,72 @@
+:root {
+   --color-dark: #343a40;
+   --color-dark-bg: #454d55;
+   --color-light: #fff;
+   --color-light-bg: #f4f6f9;
+}
+
+* {
+   margin: 0;
+   padding: 0;
+}
+
+input, button, input:focus, input:active, button:focus, button:active, .btn:focus, .btn-primary:focus {
+   outline: none !important;
+   box-shadow: none !important;
+}
+
+.theme-icon > span {
+   font-size: 20px;
+}
+
+.action-buttons {
+   padding: .1rem .3rem !important;
+   font-size: 14px;
+}
+
+.dark-mode .model-close-icon {
+   color: white;
+}
+
+.model-close-icon {
+   font-size: 20px;
+}
+
+body.dark-mode .admin-breadcrumb {
+   background: var(--color-dark);
+}
+
+.admin-breadcrumb {
+   border-radius: 0.25rem;
+   box-shadow: 0 0 1px rgba(0,0,0,.125), 0 1px 3px rgba(0,0,0,.2);
+}
+
+.btn {
+   box-shadow: 0 0 1px rgba(0,0,0,.125), 0 1px 3px rgba(0,0,0,.2);
+}
+
+body:not(.dark-mode) .admin-breadcrumb {
+   background: var(--color-light) !important;
+}
+
+.content-header {
+   padding: 15px !important;
+}
+
+.breadcrumb-heading {
+   font-size: 1.3rem;
+}
+
+.field-validation-error {
+   font-size: 14px;
+}
+
+.field-validation-error::before {
+   content: '*';
+   color: red;
+}
+
+body.dark-mode .field-validation-error {
+   font-weight: 500;
+   font-size: 15px !important;
+}

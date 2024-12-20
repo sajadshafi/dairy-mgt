@@ -1,0 +1,135 @@
+﻿@using DairyManagementSystem.Helpers;
+@using Microsoft.AspNetCore.Identity;
+@using System.Security.Claims;
+@inject SignInManager<SystemUser> SignInManager
+@inject UserManager<SystemUser> UserManager
+@model DairyManagementSystem.Models.ViewModels.DashboardVM
+@{
+   ViewData["Title"] = "Dashboard";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+   <div class="container-fluid admin-breadcrumb px-3 py-2">
+      <div class="row align-items-center">
+         <div class="col-sm-6">
+            <h3 class="m-0 breadcrumb-heading">Dashboard</h3>
+         </div><!-- /.col -->
+         <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+               <li class="breadcrumb-item active">Dashboard</li>
+            </ol>
+         </div><!-- /.col -->
+      </div><!-- /.row -->
+   </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<!-- Main content -->
+<section class="content">
+   <div class="container-fluid">
+      <div class="row">
+
+         @if(Model != null && Model.Counts.Count > 0) {
+            foreach(var count in Model.Counts) {
+               @if(SignInManager.IsSignedIn(User) &&
+              (string.IsNullOrWhiteSpace(count.Role) || User.IsInRole(count.Role)) &&
+              (string.IsNullOrWhiteSpace(count.NotInRole) || !User.IsInRole(count.NotInRole))) {
+                  <div class="col-12 col-sm-6 col-md-3">
+                     <div class="info-box">
+                        <span class="info-box-icon bg-info elevation-1"><i class="fas fa-@count.Icon"></i></span>
+                        <div class="info-box-content">
+                           <span class="info-box-text">@count.CountOf</span>
+                           <span class="info-box-number">
+                              @count.Count
+                           </span>
+                        </div>
+                        <!-- /.info-box-content -->
+                     </div>
+                     <!-- /.info-box -->
+                  </div>
+                  <!-- /.col -->
+               }
+            }
+         }
+      </div>
+
+      <div class="row">
+         <div class="col-lg-6">
+            <div class="card">
+               <div class="card-header border-0">
+                  <div class="d-flex justify-content-between">
+                     <h3 class="card-title">Total Sales</h3>
+                  </div>
+               </div>
+               <div class="card-body">
+                  <div class="d-flex">
+                     <p class="d-flex flex-column">
+                        @if(@ViewBag.Sales != null && @ViewBag.Sales.TotalSalesCount > 0) {
+                           <span class="text-bold text-lg">@ViewBag.Sales.TotalSalesCount</span>
+                        } else {
+                           <span class="text-bold text-lg">0</span>
+                        }
+                        <span>Total Sales</span>
+                     </p>
+                  </div>
+                  <!-- /.d-flex -->
+
+                  <div class="position-relative mb-4">
+                     <canvas id="visitors-chart" height="200"></canvas>
+                  </div>
+
+                  <div class="d-flex flex-row justify-content-end">
+                     <span class="mr-2">
+                        <i class="fas fa-square text-primary"></i> This Week
+                     </span>
+
+                     <span>
+                        <i class="fas fa-square text-gray"></i> Last Week
+                     </span>
+                  </div>
+               </div>
+            </div>
+            <!-- /.card -->
+         </div>
+         <!-- /.col-md-6 -->
+         <div class="col-lg-6">
+            <div class="card">
+               <div class="card-header border-0">
+                  <div class="d-flex justify-content-between">
+                     <h3 class="card-title">Total Sales Revenue</h3>
+                  </div>
+               </div>
+               <div class="card-body">
+                  <div class="d-flex">
+                     <p class="d-flex flex-column">
+                        @if(@ViewBag.Sales != null && @ViewBag.Sales.TotalSalesAmount > 0) {
+                           <span class="text-bold text-lg">Rs @ViewBag.Sales.TotalSalesAmount</span>
+                        }else {
+                           <span class="text-bold text-lg">Rs 0</span>
+                        }
+                     </p>
+                  </div>
+                  <!-- /.d-flex -->
+
+                  <div class="position-relative mb-4">
+                     <canvas id="sales-chart" height="200"></canvas>
+                  </div>
+
+                  <div class="d-flex flex-row justify-content-end">
+                     <span class="mr-2">
+                        <i class="fas fa-square text-primary"></i> This Week
+                     </span>
+
+                     <span>
+                        <i class="fas fa-square text-gray"></i> Last Week
+                     </span>
+                  </div>
+               </div>
+            </div>
+            <!-- /.card -->
+         </div>
+         <!-- /.col-md-6 -->
+      </div>
+   </div>
+</section>
+<!-- /.content -->
